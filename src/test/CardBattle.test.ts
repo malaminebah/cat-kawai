@@ -1,7 +1,8 @@
 // catBattle.test.tsx
 
+import { getRandomPair } from '@/app/utils/getRandomPair';
 import { Cat } from '@/types/type';
-import { getRandomPair } from '../app/page';  // Ajustez le chemin selon votre structure
+
 
 describe('getRandomPair function', () => {
  

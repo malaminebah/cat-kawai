@@ -4,23 +4,13 @@ import React, { useEffect, useState } from 'react'
 import { CatBattle } from '@/component/CatBattle'
 import { fetchCats } from './api/catApi';
 import "../styles/RankingPage.css"
+import { getRandomPair } from './utils/getRandomPair';
 export type Cat = {
   id: string;
   url: string;
 }
 
-export const getRandomPair = (catArray: Cat[]): [Cat, Cat] | null => {
-  if (!catArray || catArray.length < 2) return null;
-  
-  const image1 = Math.floor(Math.random() * catArray.length);
-  let image2 = Math.floor(Math.random() * catArray.length);
-  
-  while (image1 === image2) {
-    image2 = Math.floor(Math.random() * catArray.length);
-  }
-  
-  return [catArray[image1], catArray[image2]];
-};
+
 
 export default function Home() {
   const [cats, setCats] = useState<Cat[]>([]);
