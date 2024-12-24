@@ -2,11 +2,7 @@
 
 import React from 'react'
 import '../styles/CatRanking.css'
-
-type Cat = {
-  id: string;
-  url: string;
-}
+import { Cat } from '@/types/type';
 
 type CatRankingProps = {
   cats: Cat[];
@@ -57,7 +53,7 @@ export const CatRanking = ({ cats, scores, loading, error }: CatRankingProps) =>
         ))}
       </div>
 
-      <h2 className="ranking-subtitle">Autres participants</h2>
+      <h2 className="ranking-subtitle">Classement</h2>
       <div className="ranking-grid">
         {restOfCats.map((cat, index) => (
           <div key={cat.id} className="ranking-card">

@@ -45,7 +45,7 @@ export default function RankingPage() {
         <Link href="/" className="back-button">
           ← Retour aux votes
         </Link>
-        <h1 className="page-title">Chat Battle</h1>
+        <h1 className="page-title">Top votes</h1>
       </nav>
       <CatRanking cats={cats} scores={scores} loading={loading} error={error} />
     </div>

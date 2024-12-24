@@ -4,10 +4,23 @@ import React, { useEffect, useState } from 'react'
 import { CatBattle } from '@/component/CatBattle'
 import { fetchCats } from './api/catApi';
 import "../styles/RankingPage.css"
-type Cat = {
+export type Cat = {
   id: string;
   url: string;
 }
+
+export const getRandomPair = (catArray: Cat[]): [Cat, Cat] | null => {
+  if (!catArray || catArray.length < 2) return null;
+  
+  const image1 = Math.floor(Math.random() * catArray.length);
+  let image2 = Math.floor(Math.random() * catArray.length);
+  
+  while (image1 === image2) {
+    image2 = Math.floor(Math.random() * catArray.length);
+  }
+  
+  return [catArray[image1], catArray[image2]];
+};
 
 export default function Home() {
   const [cats, setCats] = useState<Cat[]>([]);
@@ -22,18 +35,7 @@ export default function Home() {
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
 
-  const getRandomPair = (catArray: Cat[]): [Cat, Cat] | null => {
-    if (!catArray || catArray.length < 2) return null;
-    
-    const image1 = Math.floor(Math.random() * catArray.length);
-    let image2 = Math.floor(Math.random() * catArray.length);
-    
-    while (image1 === image2) {
-      image2 = Math.floor(Math.random() * catArray.length);
-    }
-    
-    return [catArray[image1], catArray[image2]];
-  };
+ 
 
   const handleVote = (winnerId: string) => {
     setScores(prev => {
@@ -62,7 +64,7 @@ export default function Home() {
       } catch (error) {
         console.log(error);
         
-        setError("Impossible de charger les données. L'API semble inaccessible.");
+        setError("Impossible de charger les données.");
         setLoading(false);
       }
     };
